@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Maintenance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #00bcd4;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .countdown {
+            font-size: 2em;
+            color: #f4e542;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>We'll Be Back Soon!</h1>
+        <p>Our site is currently undergoing scheduled maintenance.</p>
+        <p>We’ll be back to serve you better by <strong>April 8, 2026</strong>.</p>
+        <div class="countdown">
+            <p>Time Remaining:</p>
+            <div id="countdown"></div>
+        </div>
+    </div>
+
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("April 8, 2026 00:00:00").getTime();
+
+        // Update the countdown every 1 second
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="countdown"
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            // If the countdown is over, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "Maintenance completed!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
