@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HawkLab Home Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1f1f1f;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .header-left,
+        .header-right {
+            display: flex;
+            align-items: center;
+            width: 150px;
+        }
+
+        .header-left img,
+        .header-right img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .header-center {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-center a {
+            color: #00ffff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .header-center a:hover {
+            border-bottom: 2px solid #00ffff;
+        }
+
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+            padding-top: 60px;
+        }
+
+        .content {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            background-color: #333;
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            height: 80vh;
+        }
+
+        .left-container,
+        .right-container {
+            width: 20%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+        }
+
+        .left-container {
+            background-image: url('../Image/Left.png'); /* Replace with your image path */
+        }
+
+        .right-container {
+            background-image: url('../Image/Right.png'); /* Replace with your image path */
+        }
+
+        .center-container {
+            width: 55%;
+            max-height: 100%;
+            overflow-y: auto;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #252525;
+            border-radius: 8px;
+        }
+
+        /* Hide scrollbar */
+        .center-container::-webkit-scrollbar {
+            display: none;
+        }
+        .center-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Countdown Timer */
+        #countdown {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #ffdd57;
+        }
+
+        /* Update Box */
+        .update-box {
+            background-color: #444;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .update-box h3 {
+            margin-bottom: 10px;
+            color: #00ffff;
+            font-size: 22px;
+        }
+
+        .milestone {
+            margin: 8px 0;
+            font-size: 18px;
+            color: #ddd;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-left,
+            .header-right {
+                display: none;
+            }
+
+            .content {
+                flex-direction: column;
+                padding: 15px;
+                height: auto;
+            }
+
+            .left-container,
+            .right-container,
+            .center-container {
+                width: 100%;
+                margin-bottom: 20px;
+                height: 200px; /* Set a fixed height for small screens */
+            }
+
+            .center-container {
+                padding: 15px;
+                font-size: 16px;
+            }
+
+            #countdown {
+                font-size: 24px;
+            }
+
+            .update-box {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .center-container {
+                font-size: 14px;
+            }
+
+            #countdown {
+                font-size: 20px;
+            }
+
+            .left-container,
+            .right-container {
+                height: 150px; /* Adjust height for very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-left">
+            <span>HAWKLAB</span>
+        </div>
+        <nav class="header-center">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+            <a href="https://chub.hawklab.net/login.html">Login</a>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <section class="content">
+            <!-- Left Container for Image -->
+            <div class="left-container"></div>
+
+            <!-- Center Container for Main Content -->
+            <div class="center-container">
+                <h1>HawkLab Site is Opening Soon</h1>
+                <div id="countdown">Loading countdown...</div>
+
+                <!-- Update Box for Milestones -->
+                <div class="update-box">
+                    <h3>Milestones</h3>
+                    <p class="milestone">🚧 Working on Main Website</p>
+                    <p class="milestone">🧑‍💻 Currently creating user login for Control Hub</p>
+                    <p class="milestone">🔄 Working on backend integrations</p>
+                    <p class="milestone">📅 Planned to release subscription for account registration</p>
+                    <p class="milestone">🔨 Building the UserHUB</p>
+                    <p class="milestone">🔨 Building the AdminHUB</p>
+                    <p class="milestone">🚀 Prject in pause till March 2026</p>
+                </div>
+            </div>
+
+            <!-- Right Container for Image -->
+            <div class="right-container"></div>
+        </section>
+    </main>
+
+    <!-- Countdown Timer Script -->
+    <script>
+        // Set the target date to the end of February 2025
+        const targetDate = new Date("March 31, 2026 23:59:59").getTime();
+
+        // Update the countdown every 1 second
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result
+            document.getElementById("countdown").innerHTML = 
+                `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            // If the countdown is over, display "Launched!"
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "🎉 Launched!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
