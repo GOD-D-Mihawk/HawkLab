@@ -1154,12 +1154,13 @@
         const certificationsData = {
             all: [
                 {
-                    name: "SQL Bootcamp",
+                    name: "SQL Bootcamp Certificate",
                     issuer: "Udemy Business",
                     date: "2025",
                     icon: "🗄️",
                     category: "technical",
-                    id: "UC-XXXXXXXX"
+                    id: "UC-SQL-2025",
+                    pdfUrl: "https://raw.githubusercontent.com/GOD-D-Mihawk/Professional-Resume/main/Certificate/SQL%20Bootcamp%20Certificate.pdf"
                 },
                 {
                     name: "Business English for Customer Service",
@@ -1167,7 +1168,8 @@
                     date: "2024",
                     icon: "💼",
                     category: "language",
-                    id: "BECSP-XXXXXXXX"
+                    id: "BECSP-2024",
+                    pdfUrl: "https://raw.githubusercontent.com/GOD-D-Mihawk/Professional-Resume/main/Certificate/Business%20English%20for%20Customer%20Service%20Professional.pdf"
                 },
                 {
                     name: "Diploma in IT Cybersecurity",
@@ -1175,7 +1177,8 @@
                     date: "June 2024",
                     icon: "🎓",
                     category: "technical",
-                    id: "DIP-CYB-2024"
+                    id: "DIP-CYB-2024",
+                    pdfUrl: "https://raw.githubusercontent.com/GOD-D-Mihawk/Professional-Resume/main/Certificate/30)%20LACHARMANTE%20CEDRIC%20HUGHES%20PASCAL_DCY%20(1).pdf"
                 }
             ]
         };
@@ -1188,6 +1191,7 @@
                 const certCard = document.createElement('div');
                 certCard.className = 'cert-card fade-in';
                 certCard.style.animationDelay = `${index * 0.1}s`;
+                certCard.style.cursor = 'pointer';
                 certCard.innerHTML = `
                     <div class="cert-badge">${cert.icon}</div>
                     <div class="cert-content">
@@ -1195,6 +1199,9 @@
                         <div class="cert-issuer">${cert.issuer}</div>
                         <div class="cert-date">Issued: ${cert.date}</div>
                         <div class="cert-id">ID: ${cert.id}</div>
+                        <div style="margin-top: 1rem;">
+                            <a href="${cert.pdfUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; text-align: center; padding: 0.5rem; font-size: 0.85rem;">📥 View Certificate</a>
+                        </div>
                     </div>
                 `;
                 certGrid.appendChild(certCard);
