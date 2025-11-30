@@ -1,0 +1,30 @@
+# Binary files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.ico
+
+# Large media files
+*.mp4
+*.mov
+*.wav
+*.mp3
+
+# Dependencies
+node_modules/
+venv/
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
