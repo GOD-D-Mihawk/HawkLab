@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cedric Lacharmante - Professional CV | HawkLab</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .cv-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            min-height: 1200px;
+        }
+
+        .sidebar {
+            width: 35%;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px 30px;
+        }
+
+        .main-content {
+            width: 65%;
+            padding: 40px 30px;
+        }
+
+        /* Sidebar Styling */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .profile-title {
+            font-size: 14px;
+            color: #bdc3c7;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .contact-icon {
+            margin-right: 10px;
+            min-width: 20px;
+            font-size: 14px;
+        }
+
+        .skill-item {
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .skill-item::before {
+            content: "●";
+            margin-right: 8px;
+            color: #3498db;
+        }
+
+        .language-item {
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .language-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .language-level {
+            font-size: 11px;
+            color: #bdc3c7;
+        }
+
+        /* Main Content Styling */
+        .main-section {
+            margin-bottom: 25px;
+        }
+
+        .main-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .profile-text {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .experience-item {
+            margin-bottom: 18px;
+        }
+
+        .job-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 2px;
+        }
+
+        .company-name {
+            font-size: 12px;
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .job-date {
+            font-size: 11px;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .job-description {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.6;
+            margin-left: 10px;
+        }
+
+        .job-description li {
+            margin-bottom: 4px;
+            margin-left: 15px;
+        }
+
+        .education-item {
+            margin-bottom: 15px;
+        }
+
+        .degree {
+            font-size: 13px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 2px;
+        }
+
+        .university {
+            font-size: 12px;
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .graduation-date {
+            font-size: 11px;
+            color: #7f8c8d;
+        }
+
+        /* Controls */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            background: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-download {
+            background: #3498db;
+        }
+
+        .btn-download:hover {
+            background: #2980b9;
+        }
+
+        .btn-home {
+            background: #27ae60;
+        }
+
+        .btn-home:hover {
+            background: #229954;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #2c3e50;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .controls {
+                display: none;
+            }
+
+            .cv-container {
+                max-width: 100%;
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cv-container {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 30px 20px;
+            }
+
+            .main-content {
+                width: 100%;
+                padding: 30px 20px;
+            }
+
+            .controls {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 20px;
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button class="btn btn-download" onclick="downloadPDF()">📥 Download PDF</button>
+        <a href="/" class="btn btn-home">← Back to Home</a>
+    </div>
+
+    <div class="cv-container" id="cv-content">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <!-- Profile Section -->
+            <div class="profile-section">
+                <div class="profile-image">👨‍💼</div>
+                <div class="profile-name">Cedric Hughes<br>Pascal Lacharmante</div>
+                <div class="profile-title">SOC Analyst & Cybersecurity Professional</div>
+            </div>
+
+            <!-- Contact Section -->
+            <div>
+                <div class="section-title">CONTACT</div>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <span>Flacq, Mauritius 40607</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <span>+230 58548541</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span>cedhughes3@gmail.com</span>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div>
+                <div class="section-title">SKILLS</div>
+                <div class="skill-item">SIEM Tools (Advanced)</div>
+                <div class="skill-item">Threat Detection (Advanced)</div>
+                <div class="skill-item">Incident Response (Intermediate)</div>
+                <div class="skill-item">Log Analysis (Advanced)</div>
+                <div class="skill-item">Python (Intermediate)</div>
+                <div class="skill-item">SQL (Advanced)</div>
+                <div class="skill-item">Java (Intermediate)</div>
+                <div class="skill-item">Network Security (Advanced)</div>
+                <div class="skill-item">Vulnerability Assessment (Intermediate)</div>
+                <div class="skill-item">Security Monitoring (Advanced)</div>
+                <div class="skill-item">Technical Documentation (Advanced)</div>
+                <div class="skill-item">Problem Solving (Advanced)</div>
+            </div>
+
+            <!-- Languages Section -->
+            <div>
+                <div class="section-title">LANGUAGES</div>
+                <div class="language-item">
+                    <div class="language-name">English</div>
+                    <div class="language-level">Fluent (Professional)</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-name">French</div>
+                    <div class="language-level">Native Speaker</div>
+                </div>
+                <div class="language-item">
+                    <div class="language-name">Mauritian Creole</div>
+                    <div class="language-level">Native Speaker</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <!-- Profile Section -->
+            <div class="main-section">
+                <div class="main-title">PROFILE</div>
+                <div class="profile-text">
+                    Cybersecurity professional with hands-on experience in SOC operations, threat detection, and incident response. Currently working as SOC Analyst at Orange Business Services (July 2025 - Present). Specialized in SIEM tools, log analysis, and security monitoring. Proven ability to identify and mitigate security threats while maintaining operational efficiency.
+                </div>
+            </div>
+
+            <!-- Professional Experience Section -->
+            <div class="main-section">
+                <div class="main-title">PROFESSIONAL EXPERIENCE</div>
+
+                <div class="experience-item">
+                    <div class="job-title">🔒 SOC Analyst</div>
+                    <div class="company-name">Orange Business Services MSC IOO Center, Ebene, Mauritius</div>
+                    <div class="job-date">July 2025 – Present</div>
+                    <ul class="job-description">
+                        <li>Monitor and analyze security events using SIEM tools to identify potential threats and anomalies</li>
+                        <li>Perform real-time threat detection and incident response activities</li>
+                        <li>Investigate security alerts and escalate critical incidents to senior analysts</li>
+                        <li>Analyze security logs and network traffic to identify anomalous behavior</li>
+                        <li>Document security incidents and maintain detailed incident reports</li>
+                        <li>Collaborate with incident response teams to contain and remediate threats</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Support Agent</div>
+                    <div class="company-name">Total Energies (TEMSI), Socota Phoenicia, Phoenix</div>
+                    <div class="job-date">February 2025 – June 2025</div>
+                    <ul class="job-description">
+                        <li>Utilized ticketing system to track customer requests and prioritize urgent needs</li>
+                        <li>Responded to customer inquiries and resolved complaints efficiently</li>
+                        <li>Analyzed business reports for prompt communication and follow-ups</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Assistant IT Administrator</div>
+                    <div class="company-name">LUX Grand Baie, Grand Baie, Mauritius</div>
+                    <div class="job-date">November 2024 – January 2025</div>
+                    <ul class="job-description">
+                        <li>Managed hardware inventory and facilitated timely replacements or repairs</li>
+                        <li>Optimized server configurations, improving stability and performance</li>
+                        <li>Championed cybersecurity best practices to minimize risks</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">IT Technical Support Specialist</div>
+                    <div class="company-name">Orange Business Services, Ebene, Mauritius</div>
+                    <div class="job-date">September 2023 – November 2024</div>
+                    <ul class="job-description">
+                        <li>Streamlined IT processes to increase efficiency and reduce downtime</li>
+                        <li>Diagnosed complex technical problems and provided quick solutions</li>
+                        <li>Built tracking tools to improve team efficiency and ticket history management</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Education Section -->
+            <div class="main-section">
+                <div class="main-title">EDUCATION</div>
+
+                <div class="education-item">
+                    <div class="degree">Diploma in IT Cybersecurity</div>
+                    <div class="university">Polytechnics Mauritius, Réduit</div>
+                    <div class="graduation-date">June 2024</div>
+                </div>
+
+                <div class="education-item">
+                    <div class="degree">High School Certificate (French)</div>
+                    <div class="university">St Mary's College, Rose-Hill</div>
+                    <div class="graduation-date">November 2019</div>
+                </div>
+            </div>
+
+            <!-- Certifications Section -->
+            <div class="main-section">
+                <div class="main-title">CERTIFICATIONS</div>
+
+                <div class="education-item">
+                    <div class="degree">SQL Bootcamp Certificate</div>
+                    <div class="university">Udemy Business</div>
+                    <div class="graduation-date">2025</div>
+                </div>
+
+                <div class="education-item">
+                    <div class="degree">Business English for Customer Service Professional</div>
+                    <div class="university">Professional Certification</div>
+                    <div class="graduation-date">2024</div>
+                </div>
+
+                <div class="education-item">
+                    <div class="degree">Diploma in IT Cybersecurity</div>
+                    <div class="university">Polytechnics Mauritius</div>
+                    <div class="graduation-date">June 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back Link -->
+    <div style="text-align: center; margin-top: 30px; padding: 20px;">
+        <a href="/" class="back-link">← Back to HawkLab Home</a>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById('cv-content');
+            const opt = {
+                margin: 0,
+                filename: 'Cedric_Lacharmante_CV.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html>
